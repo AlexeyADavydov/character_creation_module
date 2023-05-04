@@ -1,27 +1,43 @@
 from random import randint
 
+from graphic_arts.start_game_banner import run_screensaver
+
 
 def attack(char_name: str, char_class: str) -> str:
+    """Функция определения урона."""
+    random_number = None
     if char_class == 'warrior':
-        return (f'{char_name} нанёс урон противнику равный {randint(8, 10)}')
+        random_number = randint(8, 10)
+        return (f'{char_name} нанёс урон противнику '
+                f'равный {random_number}')
     if char_class == 'mage':
-        return (f'{char_name} нанёс урон противнику равный {randint(10, 15)}')
+        random_number = randint(10, 15)
+        return (f'{char_name} нанёс урон противнику '
+                f'равный {random_number}')
     if char_class == 'healer':
-        return (f'{char_name} нанёс урон противнику равный {randint(2, 4)}')
+        random_number = randint(2, 4)
+        return (f'{char_name} нанёс урон противнику '
+                f'равный {random_number}')
     return (f'{char_name} не применил специальное умение')
 
 
 def defence(char_name: str, char_class: str) -> str:
+    """Функция определения защиты."""
+    random_number = None
     if char_class == 'warrior':
-        return (f'{char_name} блокировал {randint(10, 20)} урона')
+        random_number = randint(10, 20)
+        return (f'{char_name} блокировал {random_number} урона')
     if char_class == 'mage':
-        return (f'{char_name} блокировал {randint(8, 12)} урона')
+        random_number = randint(8, 12)
+        return (f'{char_name} блокировал {random_number} урона')
     if char_class == 'healer':
-        return (f'{char_name} блокировал {randint(12, 15)} урона')
+        random_number = randint(12, 15)
+        return (f'{char_name} блокировал {random_number} урона')
     return (f'{char_name} не применил специальное умение')
 
 
 def special(char_name: str, char_class: str) -> str:
+    """Функция определения класса персонажа."""
     if char_class == 'warrior':
         return (f'{char_name} применил специальное умение «Выносливость 105»')
     if char_class == 'mage':
@@ -32,6 +48,7 @@ def special(char_name: str, char_class: str) -> str:
 
 
 def start_training(char_name: str, char_class: str) -> str:
+    """Функция взаимодействия для тренировки."""
     if char_class == 'warrior':
         print(f'{char_name}, ты Воитель — отличный боец ближнего боя.')
     if char_class == 'mage':
@@ -56,6 +73,7 @@ def start_training(char_name: str, char_class: str) -> str:
 
 
 def choice_char_class() -> str:
+    """Функция описания и выбора класса персонажа."""
     approve_choice: str = ''
     char_class: str = ''
     while approve_choice != 'y':
@@ -79,18 +97,15 @@ def choice_char_class() -> str:
     return char_class
 
 
-def main() -> str:
-    char_name: str = ''
+if __name__ == '__main__':
+
+    run_screensaver()
     print('Приветствую тебя, искатель приключений!')
     print('Прежде чем начать игру...')
-    char_name = input('...назови себя: ')
+    char_name: str = input('...назови себя: ')
     print(f'Здравствуй, {char_name}! '
           'Сейчас твоя выносливость — 80, атака — 5 и защита — 10.')
     print('Ты можешь выбрать один из трёх путей силы:')
     print('Воитель, Маг, Лекарь')
     char_class: str = choice_char_class()
     print(start_training(char_name, char_class))
-    return ''
-
-
-main()
